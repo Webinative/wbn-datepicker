@@ -1,5 +1,5 @@
 # WBN Datepicker
-##Simple usage
+## Simple usage
 **HTML**
 
     <input type="text" 
@@ -11,7 +11,7 @@
 
     $('.wbn-datepicker').datepicker()
 
-##Default value
+## Default value
 Use the `value` attribute
 
 **HTML**
@@ -34,7 +34,7 @@ Use the `data-min` and `data-max` attributes
 	       data-min="2017-01-15"
 	       data-max="2017-04-15" />
 
-##Date range
+## Date range
 Use the `data-start-src="from-date-id"` on end-date picker
 
 **HTML**
@@ -47,7 +47,7 @@ Use the `data-start-src="from-date-id"` on end-date picker
 	       class="form-control wbn-datepicker"
 	       data-start-src="start-date" />
 
-##Date range with weekly repeat
+## Date range with weekly repeat
 Use the `data-repeat="weekly" data-repeat-day="dayOfWeek"` on end-date datepicker
 
 **HTML**
