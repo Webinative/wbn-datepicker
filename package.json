@@ -1,0 +1,50 @@
+{
+  "name": "FrontEndWorkflow",
+  "version": "0.0.2",
+  "description": "Front-end workflow (*** Modified for wbn-datepicker ***) for scss-css compilation and js minification",
+  "main": "npm_init.js",
+  "scripts": {
+    "scss": "node-sass --output-style compressed -o static/css/ scss/",
+    "autoprefixer": "postcss -u autoprefixer -r static/css/*.css",
+    "lint": "eslint scripts/",
+    "uglify": "uglifyjs scripts/*.js -m -o static/js/wbn-datepicker.js && uglifyjs scripts/*.js -m -c -o static/js/wbn-datepicker.min.js",
+    
+    "build:css": "npm run scss && npm run autoprefixer",
+    "build:js": "npm run lint && npm run uglify",
+    "watch:css": "onchange 'scss/*.scss' -- npm run build:css",
+    "watch:js": "onchange 'scripts/*.js' -- npm run build:js",
+    "watch:all": "parallelshell 'npm run watch:css' 'npm run watch:js'",
+
+    "test": "echo \"Error: no test specified\" && exit 1",
+
+    "scss:dev": "node-sass --output-style compressed -o public/css/ scss/",
+    "autoprefixer:dev": "postcss -u autoprefixer -r public/css/*.css",
+    "uglify:dev": "uglifyjs scripts/*.js -o public/js/wbn-datepicker.js && uglifyjs scripts/*.js -c -o public/js/wbn-datepicker.min.js",
+    
+    "build:css:dev": "npm run scss:dev && npm run autoprefixer:dev",
+    "build:js:dev": "npm run lint && npm run uglify:dev",
+    "watch:css:dev": "onchange 'scss/*.scss' -- npm run build:css:dev",
+    "watch:js:dev": "onchange 'scripts/*.js' -- npm run build:js:dev",
+    
+    "watch:dev": "parallelshell 'npm run watch:css:dev' 'npm run watch:js:dev'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mageshravi/npm-frontend-workflow"
+  },
+  "author": "Magesh Ravi <magesh@webinative.com>",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "autoprefixer": "^6.4.1",
+    "eslint": "^3.5.0",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-react": "^6.2.0",
+    "eslint-plugin-standard": "^2.0.0",
+    "node-sass": "~3.8.0",
+    "onchange": "^3.0.2",
+    "parallelshell": "^2.0.0",
+    "postcss-cli": "^2.6.0",
+    "uglify-js": "^2.7.3"
+  }
+}

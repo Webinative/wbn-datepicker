@@ -1,0 +1,251 @@
+$dark-blue: #008bce;
+$light-blue: #29abe2;
+  
+.wbn-datepicker-modal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .05);
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  display: none;
+  
+  &.active {
+    display: block;
+  }
+}
+.wbn-datepicker-wrapper {
+  position: relative;
+  
+  ::selection {
+    background-color: $dark-blue;
+  }
+  
+  .wbn-datepicker-controls {
+    border: 1px solid lightgray;
+    background-color: white;
+    border-radius: .25rem;
+    
+    display: flex;
+    align-items: center;
+    -webkit-padding-start: 2px;
+    -moz-padding-start: 2px;
+    
+    input[type="text"] {
+      margin: 4px;
+      border: none;
+      padding: 0px;
+      color: white;
+      background-color: #e9e9e9;
+      text-align: center;
+      width: 35px;
+      
+      border-radius: 4px;
+      
+      &::placeholder {
+        color: #959595;
+      }
+      
+      &:focus {
+        background: #bdbdbd;
+        background: -moz-linear-gradient(top, #bdbdbd 0%, #e0e0e0 100%);
+        background: -webkit-linear-gradient(top, #bdbdbd 0%,#e0e0e0 100%);
+        background: linear-gradient(to bottom, #bdbdbd 0%,#e0e0e0 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bdbdbd', endColorstr='#e0e0e0',GradientType=0 );
+        box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.25);
+        outline: none;
+      }
+      
+      &:valid {
+        background-color: $light-blue;
+      }
+      
+      &:valid:focus,
+      &:valid:active {
+        background: $dark-blue;
+        background: -moz-linear-gradient(top, #008bce 0%, #29abe2 100%);
+        background: -webkit-linear-gradient(top, #008bce 0%,#29abe2 100%);
+        background: linear-gradient(to bottom, #008bce 0%,#29abe2 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#008bce', endColorstr='#29abe2',GradientType=0 );
+        box-shadow: inset 0px 2px 10px rgba(0, 0, 0, 0.25) !important;
+      }
+      
+      &[readonly] {
+        color: $light-blue;
+        background-color: white;
+        
+        &:focus {
+          background: white;
+          box-shadow: none;
+        }
+        
+        &::placeholder {
+          color: #d2d2d2;
+        }
+      }
+      
+      &.year {
+        width: 55px;
+      }
+      
+      &.month-label {
+        width: 45px;
+      }
+    }
+  }
+  
+  &.active {
+    z-index: 1;
+    
+    .wbn-datepicker-controls {
+      box-shadow: inset 0px 2px 4px rgba(0, 0, 0, .15);
+      
+      input[type="text"] {
+        box-shadow: 0px 1px 0px rgb(191, 194, 201);
+        
+        &:valid {
+          box-shadow: 0px 1px 0px #008bce;
+        }
+        
+        &[readonly] {
+          box-shadow: none;
+        }
+      }
+      
+      & + .wbn-datepicker-envelope {
+        display: block;
+      }
+    }
+  }
+  
+  .wbn-datepicker-envelope {
+    border: 1px solid lightgray;
+    background-color: white;
+    width: 280px;
+    overflow: hidden;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.10);
+    position: absolute;
+    z-index: 2;
+    display: none;
+    
+    .views-wrapper {
+      width: 300%;
+      white-space: nowrap;
+      transition: all .3s ease-out;
+      
+      &.year {
+        margin-left: 0;
+        transition: all .3s ease-out;
+      }
+      &.month {
+        margin-left: -100%;
+        transition: all .3s ease-out;
+      }
+      &.week {
+        margin-left: -200%;
+        transition: all .3s ease-out;
+      }
+      
+      .datepicker-view {
+        width: calc(33.33%);
+        min-height: 1px;
+        float: left;
+      }
+    }
+    
+    ul {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      list-style: none;
+      
+      li {
+        color: lightgray;
+      }
+      
+      li.selectable {
+        color: black;
+        cursor: pointer;
+        
+        &:hover {
+          background-color: #DBEDF4;
+        }
+        
+        &:active,
+        &.active {
+          background-color: #B3DDED;
+        }
+        
+        &:active:hover,
+        &.active:hover {
+          
+        }
+      }
+    }
+    
+    ul.year {
+      max-height: 205px;
+      overflow-y: auto;
+      
+      li {
+        margin: 5px auto 0;
+        padding: 15px;
+        max-width: 200px;
+        
+        &:last-child {
+          margin: 5px auto;
+        }
+      }
+    }
+    
+    ul.month {
+      padding: 4px;
+      
+      li {
+        margin: 0 2px 2px 0;
+        padding: 12px;
+        width: calc(calc(100% - 4px) / 3);
+        float: left;
+        
+        &:nth-child(3n+3) {
+          margin-right: 0;
+        }
+        &:nth-child(3n+4) {
+          clear: both;
+        }
+        &:nth-child(n+10) {
+          margin-bottom: 0;
+        }
+      }
+      
+      &:after {
+        content: '';
+        clear: both;
+        display: block;
+      }
+    }
+    
+    ul.week {
+      
+      &.labels li {
+        padding: 5px;
+      }
+      
+      li {
+        padding: 5px 10px;
+        width: 40px;
+        text-align: center;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+pre.prettyprint {
+  border-color: lightgray !important;
+  padding: 10px !important;
+  background-color: whitesmoke;
+  border-radius: .25rem;
+}
