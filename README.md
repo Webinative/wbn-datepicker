@@ -1,5 +1,5 @@
 # WBN Datepicker
-##Simple usage
+## Simple usage
 **HTML**
 
     <input type="text" 
@@ -11,7 +11,7 @@
 
     $('.wbn-datepicker').datepicker()
 
-##Default value
+## Default value
 Use the `value` attribute
 
 **HTML**
@@ -34,7 +34,7 @@ Use the `data-min` and `data-max` attributes
 	       data-min="2017-01-15"
 	       data-max="2017-04-15" />
 
-##Date range
+## Date range
 Use the `data-start-src="from-date-id"` on end-date picker
 
 **HTML**
@@ -47,7 +47,7 @@ Use the `data-start-src="from-date-id"` on end-date picker
 	       class="form-control wbn-datepicker"
 	       data-start-src="start-date" />
 
-##Date range with weekly repeat
+## Date range with weekly repeat
 Use the `data-repeat="weekly" data-repeat-day="dayOfWeek"` on end-date datepicker
 
 **HTML**
@@ -61,6 +61,24 @@ Use the `data-repeat="weekly" data-repeat-day="dayOfWeek"` on end-date datepicke
 	       data-start-src="start-date-repeat"
 	       data-repeat="weekly"
 	       data-repeat-day="0" />
+
+## Date range with fortnightly repeat
+
+Use `data-repeat="fortnightly" data-repeat-day="dayOfMonth" data-repeat-start="date"` on end-date picker
+
+**HTML**
+	<input type="text"
+                 id="start-date-fortnightly-repeat"
+                 name="start_date_fortnightly_repeat"
+                 class="form-control wbn-datepicker" />
+	<input type="text"
+                 id="end-date-fortnightly-repeat"
+                 name="end_date_fortnightly_repeat"
+                 class="form-control wbn-datepicker"
+                 data-start-src="start-date-fortnightly-repeat"
+                 data-repeat="fortnightly"
+                 data-repeat-day="0"
+                 data-repeat-start="2017-04-04" />
 
 ## Date range with monthly repeat
 Use `data-repeat="monthly" data-repeat-day="dayOfMonth"` on end-date datepicker
