@@ -62,6 +62,24 @@ Use the `data-repeat="weekly" data-repeat-day="dayOfWeek"` on end-date datepicke
 	       data-repeat="weekly"
 	       data-repeat-day="0" />
 
+## Date range with fortnightly repeat
+
+Use `data-repeat="fortnightly" data-repeat-day="dayOfMonth" data-repeat-start="date"` on end-date picker
+
+**HTML**
+	<input type="text"
+                 id="start-date-fortnightly-repeat"
+                 name="start_date_fortnightly_repeat"
+                 class="form-control wbn-datepicker" />
+	<input type="text"
+                 id="end-date-fortnightly-repeat"
+                 name="end_date_fortnightly_repeat"
+                 class="form-control wbn-datepicker"
+                 data-start-src="start-date-fortnightly-repeat"
+                 data-repeat="fortnightly"
+                 data-repeat-day="0"
+                 data-repeat-start="2017-04-04" />
+
 ## Date range with monthly repeat
 Use `data-repeat="monthly" data-repeat-day="dayOfMonth"` on end-date datepicker
 

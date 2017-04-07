@@ -1,87 +1,90 @@
 <!DOCTYPE html>
-<html >
+<html>
+
 <head>
   <meta charset="UTF-8">
   <title>Datepicker</title>
-  
-  
-  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
 
-  <link rel="stylesheet" href="static/css/wbn-datepicker.css">
-  
+
+  <link rel='stylesheet prefetch'
+        href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
+
+  <link rel="stylesheet"
+        href="static/css/wbn-datepicker.css">
+
 </head>
 
 <body>
   <br>
-<div class="container">
-  <div class="col-md-6 offset-md-3">
-    <h1>WBN Datepicker</h1>
-    
-    <h4>Simple usage</h4>
-    
-    <strong>HTML</strong>
-    <pre class="prettyprint">
+  <div class="container">
+    <div class="col-md-6 offset-md-3">
+      <h1>WBN Datepicker</h1>
+
+      <h4>Simple usage</h4>
+
+      <strong>HTML</strong>
+      <pre class="prettyprint">
 &lt;input type=&quot;text&quot; 
        id=&quot;simple&quot; 
        name=&quot;simple&quot;
        class=&quot;form-control wbn-datepicker&quot; /&gt;
     </pre>
-    
-    <strong>JavaScript</strong>
-    <pre class="prettyprint">
+
+      <strong>JavaScript</strong>
+      <pre class="prettyprint">
 $(&#39;.wbn-datepicker&#39;).datepicker()
     </pre>
-    
-    <strong>Output</strong>
-    <form action="">
-      <div class="form-group">
-        <label for="simple">Simple</label>
-        <input type="text" 
-               id="simple" 
-               name="simple"
-               class="form-control wbn-datepicker" />
-      </div>
-    </form>
-    
-    
 
-    <br />
-    <hr />
-    
-    <h4>Default value</h4>
-    <p>Use the <code>value</code> attribute</p>
-    
-    <strong>HTML</strong>
-    <pre class="prettyprint">
+      <strong>Output</strong>
+      <form action="">
+        <div class="form-group">
+          <label for="simple">Simple</label>
+          <input type="text"
+                 id="simple"
+                 name="simple"
+                 class="form-control wbn-datepicker" />
+        </div>
+      </form>
+
+
+
+      <br />
+      <hr />
+
+      <h4>Default value</h4>
+      <p>Use the <code>value</code> attribute</p>
+
+      <strong>HTML</strong>
+      <pre class="prettyprint">
 &lt;input type=&quot;text&quot; 
        id=&quot;value-specified&quot; 
        name=&quot;value_specified&quot;
        class=&quot;form-control wbn-datepicker&quot;
        value=&quot;2017-03-26&quot; /&gt;
     </pre>
-    
-    <strong>Output</strong>
-    <form action="">
-      <div class="form-group">
-        <label for="value-specified">With default value</label>
-        <input type="text" 
-               id="value-specified" 
-               name="value_specified"
-               class="form-control wbn-datepicker"
-               value="2017-03-26" />
-      </div>
-    </form>
-    
-    <br />
-    <hr />
-    
-    <h4>With min and max dates</h4>
-    <p>
-      Use the <code>data-min</code> and <code>data-max</code> attributes
-    </p>
-    
-    <strong>HTML</strong>
-    <pre class="prettyprint">
+
+      <strong>Output</strong>
+      <form action="">
+        <div class="form-group">
+          <label for="value-specified">With default value</label>
+          <input type="text"
+                 id="value-specified"
+                 name="value_specified"
+                 class="form-control wbn-datepicker"
+                 value="2017-03-26" />
+        </div>
+      </form>
+
+      <br />
+      <hr />
+
+      <h4>With min and max dates</h4>
+      <p>
+        Use the <code>data-min</code> and <code>data-max</code> attributes
+      </p>
+
+      <strong>HTML</strong>
+      <pre class="prettyprint">
 &lt;input type=&quot;text&quot; 
        id=&quot;value-specified&quot; 
        name=&quot;value_specified&quot;
@@ -89,30 +92,32 @@ $(&#39;.wbn-datepicker&#39;).datepicker()
        data-min=&quot;2017-01-15&quot;
        data-max=&quot;2017-04-15&quot; /&gt;
     </pre>
-    
-    <strong>Output</strong>
-    <form action="">
-      <div class="form-group">
-        <label for="value-specified">With min and max dates</label>
-        <input type="text" 
-               id="value-specified" 
-               name="value_specified"
-               class="form-control wbn-datepicker"
-               data-min="2017-01-15"
-               data-max="2017-04-15" />
-      </div>
-    </form>
-    
-    <br />
-    <hr />
-    
-    <h4>Date Range</h4>
-    <p>
-      Use <code>data-start-src="from-date-id"</code> on end-date datepicker.
-    </p>
-    
-    <strong>HTML</strong>
-    <pre class="prettyprint">
+
+      <strong>Output</strong>
+      <form action="">
+        <div class="form-group">
+          <label for="value-specified">With min and max dates</label>
+          <input type="text"
+                 id="value-specified"
+                 name="value_specified"
+                 class="form-control wbn-datepicker"
+                 data-min="2017-01-15"
+                 data-max="2017-04-15" />
+        </div>
+      </form>
+
+      <br />
+      <hr />
+
+      <!-- Date range -->
+
+      <h4>Date Range</h4>
+      <p>
+        Use <code>data-start-src="from-date-id"</code> on end-date datepicker.
+      </p>
+
+      <strong>HTML</strong>
+      <pre class="prettyprint">
 &lt;input type=&quot;text&quot; id=&quot;start-date&quot;
        name=&quot;start_date&quot; 
        class=&quot;form-control wbn-datepicker&quot; /&gt;
@@ -121,119 +126,173 @@ $(&#39;.wbn-datepicker&#39;).datepicker()
        class=&quot;form-control wbn-datepicker&quot;
        data-start-src=&quot;start-date&quot; /&gt;
     </pre>
-    
-    <strong>Output</strong>
-    <form action="">
-      <div class="form-group">
-        <label for="start-date">Start Date</label>
-        <input type="text" id="start-date"
-               name="start_date" 
-               class="form-control wbn-datepicker" />
-      </div>
-      
-      <div class="form-group">
-        <label for="end-date">End date</label>
-        <input type="text" id="end-date" 
-               name="end_date"
-               class="form-control wbn-datepicker"
-               data-start-src="start-date" />
-      </div>
-    </form>
-    
-    <br />
-    <hr />
-    
-    <h4>Date range with weekly repeat</h4>
-    <p>
-      Use <code>data-repeat="weekly" data-repeat-day="dayOfWeek"</code> on end-date datepicker.
-    </p>
-    
-    <strong>HTML</strong>
-    <pre class="prettyprint">
-&lt;input type=&quot;text&quot; id=&quot;start-date-repeat&quot;
-       name=&quot;start_date_repeat&quot; 
-       class=&quot;form-control wbn-datepicker&quot; /&gt;
-&lt;input type=&quot;text&quot; id=&quot;end-date-repeat&quot; 
-       name=&quot;end_date_repeat&quot;
-       class=&quot;form-control wbn-datepicker&quot;
-       data-start-src=&quot;start-date-repeat&quot;
-       data-repeat=&quot;weekly&quot;
-       data-repeat-day=&quot;0&quot; /&gt;
-    </pre>
-    
-    <strong>Output</strong>
-    <form action="">
-      <div class="form-group">
-        <label for="start-date-repeat">Start Date</label>
-        <input type="text" id="start-date-repeat"
-               name="start_date_repeat" 
-               class="form-control wbn-datepicker" />
-      </div>
-      
-      <div class="form-group">
-        <label for="end-date">End date</label>
-        <input type="text" id="end-date-repeat" 
-               name="end_date_repeat"
-               class="form-control wbn-datepicker"
-               data-start-src="start-date-repeat"
-               data-repeat="weekly"
-               data-repeat-day="0" />
-      </div>
-    </form>
-    
-    <h4>Date range with monthly repeat</h4>
-    <p>
-      Use <code>data-repeat="monthly" data-repeat-day="dayOfMonth"</code> on end-date datepicker.
-    </p>
-    
-    <strong>HTML</strong>
-    <pre class="prettyprint">
-&lt;input type=&quot;text&quot; id=&quot;start-date-repeat&quot;
-       name=&quot;start_date_repeat&quot; 
-       class=&quot;form-control wbn-datepicker&quot; /&gt;
-&lt;input type=&quot;text&quot; id=&quot;end-date-repeat&quot; 
-       name=&quot;end_date_repeat&quot;
-       class=&quot;form-control wbn-datepicker&quot;
-       data-start-src=&quot;start-date-repeat&quot;
-       data-repeat=&quot;weekly&quot;
-       data-repeat-day=&quot;0&quot; /&gt;
-    </pre>
-    
-    <strong>Output</strong>
-    <form action="">
-      <div class="form-group">
-        <label for="start-date-monthly-repeat">Start Date</label>
-        <input type="text" id="start-date-monthly-repeat"
-               name="start_date_monthly_repeat" 
-               class="form-control wbn-datepicker" />
-      </div>
-      
-      <div class="form-group">
-        <label for="end-date">End date</label>
-        <input type="text" id="end-date-monthly-repeat" 
-               name="end_date_monthly_repeat"
-               class="form-control wbn-datepicker"
-               data-start-src="start-date-monthly-repeat"
-               data-repeat="monthly"
-               data-repeat-day="0" />
-      </div>
-    </form>
-    
-    <br />
-    <br />
-    <br />
-  </div>
-</div>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
-<script src='https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js'></script>
 
-<script src="static/js/wbn-datepicker.min.js"></script>
-<script type="text/javascript">
- $(function () {
-     $('.wbn-datepicker').datepicker()
- })
-</script>
+      <strong>Output</strong>
+      <form action="">
+        <div class="form-group">
+          <label for="start-date">Start Date</label>
+          <input type="text"
+                 id="start-date"
+                 name="start_date"
+                 class="form-control wbn-datepicker" />
+        </div>
+
+        <div class="form-group">
+          <label for="end-date">End date</label>
+          <input type="text"
+                 id="end-date"
+                 name="end_date"
+                 class="form-control wbn-datepicker"
+                 data-start-src="start-date" />
+        </div>
+      </form>
+
+      <br />
+      <hr />
+
+      <!-- Weekly repeat -->
+
+      <h4>Date range with weekly repeat</h4>
+      <p>
+        Use <code>data-repeat="weekly" data-repeat-day="dayOfWeek"</code> on end-date datepicker.
+      </p>
+
+      <strong>HTML</strong>
+      <pre class="prettyprint">
+&lt;input type=&quot;text&quot; id=&quot;start-date-repeat&quot;
+       name=&quot;start_date_repeat&quot; 
+       class=&quot;form-control wbn-datepicker&quot; /&gt;
+&lt;input type=&quot;text&quot; id=&quot;end-date-repeat&quot; 
+       name=&quot;end_date_repeat&quot;
+       class=&quot;form-control wbn-datepicker&quot;
+       data-start-src=&quot;start-date-repeat&quot;
+       data-repeat=&quot;weekly&quot;
+       data-repeat-day=&quot;0&quot; /&gt;
+    </pre>
+
+      <strong>Output</strong>
+      <form action="">
+        <div class="form-group">
+          <label for="start-date-repeat">Start Date</label>
+          <input type="text"
+                 id="start-date-repeat"
+                 name="start_date_repeat"
+                 class="form-control wbn-datepicker" />
+        </div>
+
+        <div class="form-group">
+          <label for="end-date">End date</label>
+          <input type="text"
+                 id="end-date-repeat"
+                 name="end_date_repeat"
+                 class="form-control wbn-datepicker"
+                 data-start-src="start-date-repeat"
+                 data-repeat="weekly"
+                 data-repeat-day="0" />
+        </div>
+      </form>
+
+      <!-- Monthly repeat -->
+
+      <h4>Date range with monthly repeat</h4>
+      <p>
+        Use <code>data-repeat="monthly" data-repeat-day="dayOfMonth"</code> on end-date datepicker.
+      </p>
+
+      <strong>HTML</strong>
+      <pre class="prettyprint">
+&lt;input type=&quot;text&quot; id=&quot;start-date-repeat&quot;
+       name=&quot;start_date_repeat&quot; 
+       class=&quot;form-control wbn-datepicker&quot; /&gt;
+&lt;input type=&quot;text&quot; id=&quot;end-date-repeat&quot; 
+       name=&quot;end_date_repeat&quot;
+       class=&quot;form-control wbn-datepicker&quot;
+       data-start-src=&quot;start-date-repeat&quot;
+       data-repeat=&quot;weekly&quot;
+       data-repeat-day=&quot;0&quot; /&gt;
+    </pre>
+
+      <strong>Output</strong>
+      <form action="">
+        <div class="form-group">
+          <label for="start-date-monthly-repeat">Start Date</label>
+          <input type="text"
+                 id="start-date-monthly-repeat"
+                 name="start_date_monthly_repeat"
+                 class="form-control wbn-datepicker" />
+        </div>
+
+        <div class="form-group">
+          <label for="end-date">End date</label>
+          <input type="text"
+                 id="end-date-monthly-repeat"
+                 name="end_date_monthly_repeat"
+                 class="form-control wbn-datepicker"
+                 data-start-src="start-date-monthly-repeat"
+                 data-repeat="monthly"
+                 data-repeat-day="0" />
+        </div>
+      </form>
+
+      <!-- Fortnightly repeat -->
+
+      <h4>Date range with fortnightly repeat</h4>
+      <p>
+        Use <code>data-repeat="fortnightly" data-repeat-day="dayOfweek"</code> on end-date datepicker.
+      </p>
+
+      <strong>HTML</strong>
+      <pre class="prettyprint">
+&lt;input type=&quot;text&quot; id=&quot;start-date-repeat&quot;
+       name=&quot;start_date_repeat&quot; 
+       class=&quot;form-control wbn-datepicker&quot; /&gt;
+&lt;input type=&quot;text&quot; id=&quot;end-date-repeat&quot; 
+       name=&quot;end_date_repeat&quot;
+       class=&quot;form-control wbn-datepicker&quot;
+       data-start-src=&quot;start-date-repeat&quot;
+       data-repeat=&quot;weekly&quot;
+       data-repeat-day=&quot;0&quot; /&gt;
+    </pre>
+
+      <strong>Output</strong>
+      <form action="">
+        <div class="form-group">
+          <label for="start-date-fortnightly-repeat">Start Date</label>
+          <input type="text"
+                 id="start-date-fortnightly-repeat"
+                 name="start_date_fortnightly_repeat"
+                 class="form-control wbn-datepicker" />
+        </div>
+
+        <div class="form-group">
+          <label for="end-date">End date</label>
+          <input type="text"
+                 id="end-date-fortnightly-repeat"
+                 name="end_date_fortnightly_repeat"
+                 class="form-control wbn-datepicker"
+                 data-start-src="start-date-fortnightly-repeat"
+                 data-repeat="fortnightly"
+                 data-repeat-day="0"
+                 data-repeat-start="2017-04-04" />
+        </div>
+      </form>
+
+      <br />
+      <br />
+      <br />
+    </div>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <script src='https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js'></script>
+
+  <script src="static/js/wbn-datepicker.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $('.wbn-datepicker').datepicker()
+    })
+  </script>
 
 </body>
+
 </html>
