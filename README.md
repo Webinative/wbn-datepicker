@@ -67,6 +67,7 @@ Use the `data-repeat="weekly" data-repeat-day="dayOfWeek"` on end-date datepicke
 Use `data-repeat="fortnightly" data-repeat-day="dayOfMonth" data-repeat-start="date"` on end-date picker
 
 **HTML**
+
 	<input type="text"
                  id="start-date-fortnightly-repeat"
                  name="start_date_fortnightly_repeat"
