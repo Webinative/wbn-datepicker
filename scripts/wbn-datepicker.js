@@ -7,7 +7,6 @@ var WbnDatePicker = function ($input) {
 
 WbnDatePicker.prototype.init = function () {
   'use strict'
-
   // init constants
   this.defaults = this.parseDefaults()
 
@@ -16,7 +15,11 @@ WbnDatePicker.prototype.init = function () {
   this.$wrapper = this.$input.parent('.wbn-datepicker-wrapper')
 
   // create modal
-  var $modal = $('<div class="wbn-datepicker-modal" data-name="' + this.defaults.name + '"></div>')
+  var $modal = $(
+    '<div class="wbn-datepicker-modal" data-name="' +
+    this.defaults.name +
+    '"></div>'
+  )
   $modal.insertAfter(this.$wrapper)
   this.$modal = $modal
 
@@ -48,8 +51,12 @@ WbnDatePicker.prototype.init = function () {
   this.$viewsWrapper = this.$envelope.find('.views-wrapper')
 
   // create year, month and date views
-  this.$viewsWrapper.append($('<div class="datepicker-view year-view">Year</div>'))
-  this.$viewsWrapper.append($('<div class="datepicker-view month-view">Month</div>'))
+  this.$viewsWrapper.append(
+    $('<div class="datepicker-view year-view">Year</div>')
+  )
+  this.$viewsWrapper.append(
+    $('<div class="datepicker-view month-view">Month</div>')
+  )
   this.$viewsWrapper.append($('<div class="datepicker-view week-view"></div>'))
   this.$yearView = this.$viewsWrapper.find('.year-view')
   this.$monthView = this.$viewsWrapper.find('.month-view')
@@ -72,7 +79,6 @@ WbnDatePicker.prototype.init = function () {
 
 WbnDatePicker.prototype.parseDefaults = function () {
   'use strict'
-
   var today = new Date()
 
   var targetDateStr = this.$input.val()
@@ -127,8 +133,16 @@ WbnDatePicker.prototype.parseDefaults = function () {
     var repeatDay = parseInt(this.$input.attr('data-repeat-day'))
     if (this.isValidRepeatDay(repeatMode, repeatDay)) {
       repeat = {
-        'mode': repeatMode,
-        'day': repeatDay
+        mode: repeatMode,
+        day: repeatDay
+      }
+    }
+
+    if (repeatMode === this.REPEAT_MODE_FORTNIGHTLY) {
+      var repeatStart = new Date(this.$input.attr('data-repeat-start'))
+      if (!isNaN(repeatStart.getTime())) {
+        repeat.start = repeatStart
+        repeat.day = repeatStart.getDay()
       }
     }
   }
@@ -148,19 +162,19 @@ WbnDatePicker.prototype.parseDefaults = function () {
   }
 
   return {
-    'name': name,
-    'date': targetDate,
-    'min': new Date(minYear, minMonth, minDate),
-    'max': new Date(maxYear, maxMonth, maxDate),
-    'repeat': repeat,
-    'startSrc': startSrc
+    name: name,
+    date: targetDate,
+    min: new Date(minYear, minMonth, minDate),
+    max: new Date(maxYear, maxMonth, maxDate),
+    repeat: repeat,
+    startSrc: startSrc
   }
 }
 
 WbnDatePicker.prototype.getControlsHtml = function () {
   'use strict'
   var targetDate = this.defaults.date
-  var isValueExplicit = (this.$input.val() !== '')
+  var isValueExplicit = this.$input.val() !== ''
 
   var year = targetDate.getFullYear()
   var month = targetDate.getMonth()
@@ -209,9 +223,7 @@ WbnDatePicker.prototype.getControlsHtml = function () {
   }
 
   function getMonthHtml (month, includeValue) {
-    var attrs = [
-      'class="month"'
-    ]
+    var attrs = ['class="month"']
 
     if (includeValue) {
       attrs.push('value="' + month + '"')
@@ -255,9 +267,8 @@ WbnDatePicker.prototype.getControlsHtml = function () {
 
 WbnDatePicker.prototype.showCalendar = function (hideFinally, stopAt) {
   'use strict'
-
-  hideFinally = (typeof hideFinally === 'undefined') ? true : hideFinally
-  stopAt = (typeof stopAt === 'undefined') ? 'week' : stopAt
+  hideFinally = typeof hideFinally === 'undefined' ? true : hideFinally
+  stopAt = typeof stopAt === 'undefined' ? 'week' : stopAt
 
   // set defaults when called using $.proxy method
   if (arguments.length <= 1) {
@@ -289,8 +300,15 @@ WbnDatePicker.prototype.showCalendar = function (hideFinally, stopAt) {
     this.drawMonthCalendar(targetDate)
 
     // automatically select date in monthly repeat mode
-    if (this.defaults.repeat && this.defaults.repeat.mode === this.REPEAT_MODE_MONTHLY) {
-      var lastDate = new Date(targetDate.getFullYear(), targetDate.getMonth() + 1, 0)
+    if (
+      this.defaults.repeat &&
+      this.defaults.repeat.mode === this.REPEAT_MODE_MONTHLY
+    ) {
+      var lastDate = new Date(
+        targetDate.getFullYear(),
+        targetDate.getMonth() + 1,
+        0
+      )
 
       if (this.defaults.repeat.day === 0) {
         this.$date.val(lastDate.getDate())
@@ -326,14 +344,12 @@ WbnDatePicker.prototype.showCalendar = function (hideFinally, stopAt) {
 
 WbnDatePicker.prototype.ValidationException = function (value, message) {
   'use strict'
-
   this.value = value
   this.message = message
 }
 
 WbnDatePicker.prototype.validateYear = function () {
   'use strict'
-
   var year = this.$year.val()
   var message = 'Year not valid'
   var Exception = this.ValidationException
@@ -352,7 +368,6 @@ WbnDatePicker.prototype.validateYear = function () {
 
 WbnDatePicker.prototype.validateMonth = function () {
   'use strict'
-
   var year = this.$year.val()
   var month = this.$month.val()
 
@@ -380,7 +395,6 @@ WbnDatePicker.prototype.validateMonth = function () {
 
 WbnDatePicker.prototype.validateDate = function () {
   'use strict'
-
   var year = this.$year.val()
   var month = this.$month.val()
   var date = this.$date.val()
@@ -391,8 +405,10 @@ WbnDatePicker.prototype.validateDate = function () {
   var targetDate
 
   if (date === '') {
-    var sameYear = (parseInt(this.$year.val()) === this.defaults.date.getFullYear())
-    var sameMonth = (parseInt(this.$month.val()) === this.defaults.date.getMonth())
+    var sameYear = parseInt(this.$year.val()) ===
+      this.defaults.date.getFullYear()
+    var sameMonth = parseInt(this.$month.val()) ===
+      this.defaults.date.getMonth()
 
     if (sameYear && sameMonth) {
       targetDate = this.defaults.date
@@ -442,9 +458,10 @@ WbnDatePicker.prototype.isValidMonth = function (year, month) {
     return false
   }
 
-  var isSameYear = (this.defaults.min.getFullYear() === this.defaults.max.getFullYear())
-  var isMinYear = (year === this.defaults.min.getFullYear())
-  var isMaxYear = (year === this.defaults.max.getFullYear())
+  var isSameYear = this.defaults.min.getFullYear() ===
+    this.defaults.max.getFullYear()
+  var isMinYear = year === this.defaults.min.getFullYear()
+  var isMaxYear = year === this.defaults.max.getFullYear()
 
   var minMonth = this.defaults.min.getMonth()
   var maxMonth = this.defaults.max.getMonth()
@@ -468,7 +485,6 @@ WbnDatePicker.prototype.isValidMonth = function (year, month) {
 
 WbnDatePicker.prototype.isValidDate = function (year, month, date) {
   'use strict'
-
   var selectedDate = new Date(year, month, date)
   var repeat = this.defaults.repeat
 
@@ -504,8 +520,29 @@ WbnDatePicker.prototype.isValidDate = function (year, month, date) {
         }
         break
 
+      case this.REPEAT_MODE_FORTNIGHTLY:
+        if (selectedDate.getDay() !== repeat.day) {
+          return false
+        }
+
+        if (selectedDate < repeat.start) {
+          return false
+        }
+
+        var diffInDays = Math.ceil(
+          (selectedDate - repeat.start) / (1000 * 3600 * 24)
+        )
+        if (diffInDays % 14 !== 0) {
+          return false
+        }
+        break
+
       case this.REPEAT_MODE_MONTHLY:
-        var lastDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0)
+        var lastDate = new Date(
+          selectedDate.getFullYear(),
+          selectedDate.getMonth() + 1,
+          0
+        )
 
         if (selectedDate.getDate() !== repeat.day) {
           if (repeat.day === 0 || repeat.day > lastDate.getDate()) {
@@ -525,7 +562,6 @@ WbnDatePicker.prototype.isValidDate = function (year, month, date) {
 
 WbnDatePicker.prototype.isValidRepeatDay = function (repeatMode, repeatDay) {
   'use strict'
-
   switch (repeatMode) {
     case this.REPEAT_MODE_WEEKLY:
     case this.REPEAT_MODE_FORTNIGHTLY:
@@ -559,14 +595,10 @@ WbnDatePicker.prototype._hideView = function () {
   var month = parseInt(this.$month.val())
 
   // adjusting 0-based index
-  month = (isNaN(month)) ? '' : (month + 1)
+  month = isNaN(month) ? '' : month + 1
 
   var initial = this.$input.val()
-  var final = [
-    this.$year.val(),
-    month,
-    this.$date.val()
-  ].join('-')
+  var final = [this.$year.val(), month, this.$date.val()].join('-')
 
   this.$input.val(final)
 
@@ -577,28 +609,18 @@ WbnDatePicker.prototype._hideView = function () {
 
 WbnDatePicker.prototype._getDayName = function (index) {
   'use strict'
+  index = index < 0 ? 0 : index
+  index = index > 6 ? 6 : index
 
-  index = (index < 0) ? 0 : index
-  index = (index > 6) ? 6 : index
-
-  var days = [
-    'Sun',
-    'Mon',
-    'Tue',
-    'Wed',
-    'Thu',
-    'Fri',
-    'Sat'
-  ]
+  var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
   return days[index]
 }
 
 WbnDatePicker.prototype._getMonthName = function (index) {
   'use strict'
-
-  index = (index < 0) ? 0 : index
-  index = (index > 11) ? 11 : index
+  index = index < 0 ? 0 : index
+  index = index > 11 ? 11 : index
 
   var months = [
     'Jan',
@@ -641,9 +663,8 @@ WbnDatePicker.prototype.showWeekView = function () {
 
 WbnDatePicker.prototype.drawYearCalendar = function (targetYear) {
   'use strict'
-
   if (!targetYear) {
-    targetYear = (new Date()).getFullYear()
+    targetYear = new Date().getFullYear()
   } else {
     targetYear = parseInt(targetYear)
   }
@@ -677,7 +698,6 @@ WbnDatePicker.prototype.drawYearCalendar = function (targetYear) {
 
 WbnDatePicker.prototype.drawMonthCalendar = function (targetDate) {
   'use strict'
-
   if (!targetDate) {
     targetDate = this.defaults.date
   }
@@ -692,9 +712,12 @@ WbnDatePicker.prototype.drawMonthCalendar = function (targetDate) {
 
       var classes = []
 
-      var isMinYear = (targetDate.getFullYear() === instance.defaults.min.getFullYear())
-      var isMaxYear = (targetDate.getFullYear() === instance.defaults.max.getFullYear())
-      var isSameYear = (instance.defaults.min.getFullYear() === instance.defaults.max.getFullYear())
+      var isMinYear = targetDate.getFullYear() ===
+        instance.defaults.min.getFullYear()
+      var isMaxYear = targetDate.getFullYear() ===
+        instance.defaults.max.getFullYear()
+      var isSameYear = instance.defaults.min.getFullYear() ===
+        instance.defaults.max.getFullYear()
 
       var minMonth = instance.defaults.min.getMonth()
       var maxMonth = instance.defaults.max.getMonth()
@@ -731,7 +754,6 @@ WbnDatePicker.prototype.drawMonthCalendar = function (targetDate) {
 
 WbnDatePicker.prototype.drawWeekCalendar = function (targetDate, repeat) {
   'use strict'
-
   if (typeof targetDate === 'undefined') {
     targetDate = this.defaults.date
   }
@@ -744,13 +766,15 @@ WbnDatePicker.prototype.drawWeekCalendar = function (targetDate, repeat) {
   var month = targetDate.getMonth()
   var activeDate = targetDate.getDate()
 
-  var isMinMonth = (year === this.defaults.min.getFullYear() && month === this.defaults.min.getMonth())
-  var isMaxMonth = (year === this.defaults.max.getFullYear() && month === this.defaults.max.getMonth())
+  var isMinMonth = year === this.defaults.min.getFullYear() &&
+    month === this.defaults.min.getMonth()
+  var isMaxMonth = year === this.defaults.max.getFullYear() &&
+    month === this.defaults.max.getMonth()
 
   var minDate = this.defaults.min.getDate()
   var maxDate = this.defaults.max.getDate()
 
-  var firstDayOfMonth = (new Date(year, month, 1)).getDay()
+  var firstDayOfMonth = new Date(year, month, 1).getDay()
   var lastDate = new Date(year, month + 1, 0)
   var lastDateOfMonth = lastDate.getDate()
 
@@ -781,6 +805,24 @@ WbnDatePicker.prototype.drawWeekCalendar = function (targetDate, repeat) {
         switch (repeat.mode) {
           case this.REPEAT_MODE_WEEKLY:
             if (dayOfWeek !== repeat.day) {
+              selectable = false
+            }
+            break
+
+          case this.REPEAT_MODE_FORTNIGHTLY:
+            var curIterationDate = new Date(year, month, date)
+            if (dayOfWeek !== repeat.day) {
+              selectable = false
+            }
+
+            if (curIterationDate < repeat.start) {
+              selectable = false
+            }
+
+            var diffInDays = Math.ceil(
+              (curIterationDate - repeat.start) / (1000 * 3600 * 24)
+            )
+            if (diffInDays % 14 !== 0) {
               selectable = false
             }
             break
@@ -844,15 +886,7 @@ WbnDatePicker.prototype.drawWeekCalendar = function (targetDate, repeat) {
 
   function getDayLabelsHtml () {
     'use strict'
-    var labels = [
-      'Sun',
-      'Mon',
-      'Tue',
-      'Wed',
-      'Thu',
-      'Fri',
-      'Sat'
-    ]
+    var labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
     var html = '<ul class="week labels">'
     for (var i = 0; i < labels.length; i++) {
@@ -866,16 +900,27 @@ WbnDatePicker.prototype.drawWeekCalendar = function (targetDate, repeat) {
 
 WbnDatePicker.prototype.bindUIActions_controls = function () {
   'use strict'
-
-  this.$controls.on('focus', 'input:not([readonly])', $.proxy(this._showView, this))
+  this.$controls.on(
+    'focus',
+    'input:not([readonly])',
+    $.proxy(this._showView, this)
+  )
 
   this.$controls.on('focus', '.year', $.proxy(this.showYearView, this))
 
   this.$controls.on('change', '.year', $.proxy(this.showCalendar, this, false))
 
-  this.$controls.on('focus', '.month-label', $.proxy(this.showCalendar, this, false, 'month'))
+  this.$controls.on(
+    'focus',
+    '.month-label',
+    $.proxy(this.showCalendar, this, false, 'month')
+  )
 
-  this.$controls.on('keyup', '.month-label', $.proxy(validateTypedInMonth, this))
+  this.$controls.on(
+    'keyup',
+    '.month-label',
+    $.proxy(validateTypedInMonth, this)
+  )
 
   function validateTypedInMonth () {
     var typedMonth = this.$monthLabel.val().toLowerCase()
@@ -905,7 +950,11 @@ WbnDatePicker.prototype.bindUIActions_controls = function () {
     // this.showCalendar()
   }
 
-  this.$controls.on('focus', '.date', $.proxy(this.showCalendar, this, false, 'week'))
+  this.$controls.on(
+    'focus',
+    '.date',
+    $.proxy(this.showCalendar, this, false, 'week')
+  )
 
   this.$controls.on('change', '.date', $.proxy(this.showCalendar, this))
 
@@ -933,7 +982,6 @@ WbnDatePicker.prototype.bindUIActions_controls = function () {
 
 WbnDatePicker.prototype.bindUIActions_yearView = function () {
   'use strict'
-
   this.$yearView.on('click', 'ul.year > li', $.proxy(selectYear, this))
 
   function selectYear (ev) {
@@ -948,7 +996,6 @@ WbnDatePicker.prototype.bindUIActions_yearView = function () {
 
 WbnDatePicker.prototype.bindUIActions_monthView = function () {
   'use strict'
-
   this.$monthView.on('click', 'ul.month > li', $.proxy(selectMonth, this))
 
   function selectMonth (ev) {
@@ -964,8 +1011,11 @@ WbnDatePicker.prototype.bindUIActions_monthView = function () {
 
 WbnDatePicker.prototype.bindUIActions_weekView = function () {
   'use strict'
-
-  this.$weekView.on('click', 'ul.week > li.selectable', $.proxy(selectDate, this))
+  this.$weekView.on(
+    'click',
+    'ul.week > li.selectable',
+    $.proxy(selectDate, this)
+  )
 
   function selectDate (ev) {
     var $target = $(ev.currentTarget)
@@ -979,7 +1029,6 @@ WbnDatePicker.prototype.bindUIActions_weekView = function () {
 
 WbnDatePicker.prototype.registerListeners = function () {
   'use strict'
-
   if (!this.defaults.startSrc) {
     return
   }
@@ -1002,7 +1051,6 @@ WbnDatePicker.prototype.resetCalendar = function (ev, value) {
     var repeatDate = updateRepeat(value, this)
 
     updateDefaultDates(repeatDate, this)
-
     this.drawYearCalendar()
     this.drawMonthCalendar()
     this.drawWeekCalendar()
@@ -1016,11 +1064,7 @@ WbnDatePicker.prototype.resetCalendar = function (ev, value) {
     var date = new Date(value)
 
     if (isNaN(date.getTime())) {
-      throw [
-        'Not a valid date',
-        'isNaN',
-        value
-      ].join(': ')
+      throw ['Not a valid date', 'isNaN', value].join(': ')
     }
 
     var reconstructed = [
@@ -1030,11 +1074,7 @@ WbnDatePicker.prototype.resetCalendar = function (ev, value) {
     ].join('-')
 
     if (reconstructed !== value) {
-      throw [
-        'Date reconstruction failed',
-        value,
-        reconstructed
-      ].join(': ')
+      throw ['Date reconstruction failed', value, reconstructed].join(': ')
     }
 
     return date
@@ -1052,6 +1092,11 @@ WbnDatePicker.prototype.resetCalendar = function (ev, value) {
         instance.defaults.repeat.day = date.getDay()
         break
 
+      case instance.REPEAT_MODE_FORTNIGHTLY:
+        instance.defaults.repeat.day = date.getDay()
+        instance.defaults.repeat.start = new Date(date.getTime() + (14 * 24 * 3600 * 1000))
+        break
+
       case instance.REPEAT_MODE_MONTHLY:
         if (isLastDate(date)) {
           instance.defaults.repeat.day = 0
@@ -1065,17 +1110,30 @@ WbnDatePicker.prototype.resetCalendar = function (ev, value) {
   }
 
   function updateDefaultDates (repeatDate, instance) {
+    var minDate
     if (instance.defaults.repeat === false) {
-      progressByOneDay(repeatDate, instance)
+      minDate = progressByDays(repeatDate, 1)
+      updateMinDate(instance, minDate)
       return
     }
+
     switch (instance.defaults.repeat.mode) {
       case instance.REPEAT_MODE_WEEKLY:
-        progressByOneDay(repeatDate, instance)
+        minDate = progressByDays(repeatDate, 1)
+        updateMinDate(instance, minDate)
+        break
+
+      case instance.REPEAT_MODE_FORTNIGHTLY:
+        minDate = progressByDays(repeatDate, 14)
+        updateMinDate(instance, minDate)
         break
 
       case instance.REPEAT_MODE_MONTHLY:
-        var nextMonthLastDate = new Date(repeatDate.getFullYear(), repeatDate.getMonth() + 2, 0)
+        var nextMonthLastDate = new Date(
+          repeatDate.getFullYear(),
+          repeatDate.getMonth() + 2,
+          0
+        )
 
         if (nextMonthLastDate.getDate() < repeatDate.getDate()) {
           instance.defaults.min = nextMonthLastDate
@@ -1090,19 +1148,34 @@ WbnDatePicker.prototype.resetCalendar = function (ev, value) {
         break
     }
 
-    function progressByOneDay (repeatDate, instance) {
-      repeatDate.setDate(repeatDate.getDate() + 1)
-      instance.defaults.min = repeatDate
+    /**
+     * Adds noOfDays to the given input date
+     * @param {Date} ipDate
+     * @param {Number} noOfDays
+     */
+    function progressByDays (ipDate, noOfDays) {
+      var timeToAdd = noOfDays * 24 * 3600 * 1000
+      var opDate = new Date(ipDate.getTime() + timeToAdd)
+      return opDate
+    }
 
-      if (instance.defaults.date < repeatDate) {
-        instance.defaults.date = repeatDate
+    /**
+     * Updates the instance's default min date
+     * @param {WbnDatePicker} instance
+     * @param {Date} minDate
+     */
+    function updateMinDate (instance, minDate) {
+      instance.defaults.min = minDate
+
+      if (instance.defaults.date < minDate) {
+        instance.defaults.date = minDate
       }
     }
   }
 
   function isLastDate (date) {
     var lastDate = new Date(date.getFullYear(), date.getMonth() + 1, 0)
-    return (date.getDate() === lastDate.getDate() && lastDate.getDate() > 29)
+    return date.getDate() === lastDate.getDate() && lastDate.getDate() > 29
   }
 }
 
