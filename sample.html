@@ -46,8 +46,6 @@ $(&#39;.wbn-datepicker&#39;).datepicker()
         </div>
       </form>
 
-
-
       <br />
       <hr />
 
@@ -72,6 +70,37 @@ $(&#39;.wbn-datepicker&#39;).datepicker()
                  name="value_specified"
                  class="form-control wbn-datepicker"
                  value="2017-03-26" />
+        </div>
+      </form>
+
+      <br />
+      <hr />
+
+      <h4>Setting the value from JavaScript</h4>
+      <p>Use the <code>val()</code> method</p>
+
+      <strong>HTML</strong>
+      <pre class="prettyprint">
+&lt;input type=&quot;text&quot; 
+       id=&quot;value-specified-js&quot; 
+       name=&quot;value_specified_js&quot;
+       class=&quot;form-control&quot; /&gt;
+      </pre>
+
+      <strong>JavaScript (jQuery)</strong>
+      <pre class="prettyprint">
+var $datepicker = $('#value-specified-js').datepicker()
+$datepicker.val('2017-05-30')
+      </pre>
+
+      <strong>Output</strong>
+      <form action="">
+        <div class="form-group">
+          <label for="value-specified-js">With default value</label>
+          <input type="text"
+                 id="value-specified-js"
+                 name="value_specified_js"
+                 class="form-control" />
         </div>
       </form>
 
@@ -290,6 +319,9 @@ $(&#39;.wbn-datepicker&#39;).datepicker()
   <script type="text/javascript">
     $(function () {
       $('.wbn-datepicker').datepicker()
+
+      var $jsDatepicker = $('#value-specified-js').datepicker()
+      $jsDatepicker.val('2017-05-30')
     })
   </script>
 
