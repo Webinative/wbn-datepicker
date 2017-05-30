@@ -1039,6 +1039,9 @@ WbnDatePicker.prototype.registerListeners = function () {
   }
 }
 
+/**
+ * Resets calendar when the source calendar value has changed
+ */
 WbnDatePicker.prototype.resetCalendar = function (ev, value) {
   'use strict'
   var pattern = /^[\d]{4}-[\d]{1,2}-[\d]{1,2}$/
@@ -1119,7 +1122,7 @@ WbnDatePicker.prototype.resetCalendar = function (ev, value) {
 
     switch (instance.defaults.repeat.mode) {
       case instance.REPEAT_MODE_WEEKLY:
-        minDate = progressByDays(repeatDate, 1)
+        minDate = progressByDays(repeatDate, 7)
         updateMinDate(instance, minDate)
         break
 
@@ -1179,6 +1182,38 @@ WbnDatePicker.prototype.resetCalendar = function (ev, value) {
   }
 }
 
+/**
+ * Sets the value explicitly (from JavaScript)
+ */
+WbnDatePicker.prototype.val = function (value) {
+  'use strict'
+  var pattern = /^[\d]{4}-[\d]{1,2}-[\d]{1,2}$/
+
+  if (!pattern.test(value)) {
+    return
+  }
+
+  this.$input.val(value)
+
+  // update defaults
+  this.defaults = this.parseDefaults()
+
+  // draw calendar
+  this.drawYearCalendar(this.defaults.date.getFullYear())
+  this.drawMonthCalendar(this.defaults.date)
+  this.drawWeekCalendar(this.defaults.date)
+
+  // update labels
+  this.$year.val(this.defaults.date.getFullYear())
+  this.$monthLabel.val(
+    this._getMonthName(this.defaults.date.getMonth())
+  )
+  this.$month.val(this.defaults.date.getMonth())
+  this.$date.val(this.defaults.date.getDate())
+
+  this.showCalendar()
+}
+
 // converting to plugin
 
 $.fn.datepicker = function () {
@@ -1190,4 +1225,10 @@ $.fn.datepicker = function () {
 
     $allDatepickers.push($datepicker)
   })
+
+  if ($allDatepickers.length === 1) {
+    return $allDatepickers[0]
+  } else {
+    return $allDatepickers
+  }
 }
