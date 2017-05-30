@@ -1203,6 +1203,7 @@ WbnDatePicker.prototype.val = function (value) {
   this.drawMonthCalendar(this.defaults.date)
   this.drawWeekCalendar(this.defaults.date)
 
+  // update labels
   this.$year.val(this.defaults.date.getFullYear())
   this.$monthLabel.val(
     this._getMonthName(this.defaults.date.getMonth())
