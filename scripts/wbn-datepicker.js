@@ -1122,7 +1122,7 @@ WbnDatePicker.prototype.resetCalendar = function (ev, value) {
 
     switch (instance.defaults.repeat.mode) {
       case instance.REPEAT_MODE_WEEKLY:
-        minDate = progressByDays(repeatDate, 1)
+        minDate = progressByDays(repeatDate, 7)
         updateMinDate(instance, minDate)
         break
 
