@@ -96,4 +96,4 @@ Use `data-repeat="monthly" data-repeat-day="dayOfMonth"` on end-date datepicker
 	       data-repeat="weekly"
 	       data-repeat-day="0" />
 
-See the sample.html file for interactive examples.
+See the [sample.html](https://webinative.github.io/wbn-datepicker/sample.html) file for interactive examples.
