@@ -41,7 +41,7 @@
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-react": "^6.2.0",
     "eslint-plugin-standard": "^2.0.0",
-    "node-sass": "~3.8.0",
+    "node-sass": "~4.14.1",
     "onchange": "^3.0.2",
     "parallelshell": "^2.0.0",
     "postcss-cli": "^2.6.0",
